@@ -1,20 +1,10 @@
 """Driver for the LMIS."""
 # Author(s): Pierre Abraham Mulamba
 # Date of creation (modification): 20200224 (20200224)
-# print("Machine: {}".format(platform.machine()))
-# print("Node: {}".format(platform.node()))
-# print("Processor: {}".format(platform.processor()))
-# print("Uname: {}".format(platform.uname()))
-# print("Release: {}".format(platform.release()))
-# print("System: {}".format(platform.system()))
-# tmp_sub = random.choice(subscribers)
-# tmp_book = random.choice(books)
-# tmp_borrow = Borrow(tmp_sub, tmp_book, date.today())
-# borrowers.append(tmp_borrow)
-# borrowers.append(borrow1)
-# borrowers.append(borrow2)
-import time
+
 import random
+import time
+
 from book import Book
 from borrow import Borrow
 from library import Library

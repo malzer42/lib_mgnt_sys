@@ -61,29 +61,6 @@ class Subscriber(object):
         """
         return self.age
 
-    # @property
-    # def get_borrowers(self) -> Borrow:
-    #    """
-    #    Returns the list of borrowers
-    #    :return:
-    #    """
-    #    try:
-    #        return self.borrowers
-    #    except Exception as exception_list_borrowers:
-    #        print("{}".format(exception_list_borrowers))
-    #    finally:
-    #        pass
-
-    # @property
-    # def get_number_of_borrowed_items_by_subsciber(self) -> int:
-    #    """
-    #    Returns the number of borrowed items by the subscriber
-    #    :return:
-    #    """
-    #    try:
-    #        return self.borrowers.count(self)
-    #    except
-
     # Mutators methods
     def set_id_number(self, id_number):
         """

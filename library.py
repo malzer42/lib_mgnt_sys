@@ -188,7 +188,6 @@ class Library(object):
                 print(f"{book_obj.get_quote} is not available {book_obj.get_n_available}")
                 return success_or_fail
 
-            # Search a subscriber with the given sub_id_number in the list of subscribers and assign him to tmp_subscriber
             sub_obj = [subscriber_elt for subscriber_elt in self.subscribers if subscriber_elt.get_id_number == sub_id_number][0]
 
             # Check if the given subscriber has borrowed the book in the list of borrowers
