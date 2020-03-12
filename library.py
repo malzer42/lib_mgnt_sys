@@ -43,11 +43,11 @@ class Library(object):
     """
     __slots__ = ['subscribers', 'n_subscribers', 'books', 'n_books', 'borrowers', 'n_borrowers']
 
-    subscribers: list
+    subscribers: []
     n_subscribers: int
-    books: list
+    books: []
     n_books: int
-    borrowers: list
+    borrowers: []
     n_borrowers: int
 
     def add_subscriber_to_library(self, subscriber_obj):

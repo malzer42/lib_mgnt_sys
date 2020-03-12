@@ -1,2 +1,2 @@
 # lib_mgnt_sys
-This project is python version of the library management inventory sytem
+This project is the Python version of the library management inventory system

@@ -39,7 +39,7 @@ def main():
         book2 = Book("QA203", "Calcul a plusieurs variables partie 1", 2011, 3, 2, 2)
         book3 = Book("QA204", "Calcul a plusieurs variables partie 2", 2011, 3, 2, 2)
         book4 = Book("AC409", "Le chateau d'Ortrante", 1764, 16, 1, 1)
-        book5 = Book("BD302", "Harry Potter et le prisionier d'Azkaban", 1999, 3, 1, 1)
+        book5 = Book("BD302", "Harry Potter et le prisonier d'Azkaban", 1999, 3, 1, 1)
         book6 = Book("CE413", "Ibssz Qpuufs et le prisionier c'balbcbo", 2000, 4, 2, 2)
         print(book1.info())
         print(book2.info())
@@ -61,10 +61,14 @@ def main():
         # / ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** * /
 
         print("\nADDING OF BOOKS AND SUBSCRIBERS TO THE LIBRARY")
-        subscribers = []
-        books = []
-        borrowers = []
-        lib = Library(subscribers, 0, books, 0, borrowers, 0)
+        subscribers = list()  # declaration of an empty list of subscribers
+        books = list()  # declaration of an empty list of books
+        borrowers = list()  # declaration of an empty list of borrowers
+        n_subscribers: int = 0
+        n_books: int = 0
+        n_borrowers: int = 0
+
+        lib = Library(subscribers, n_subscribers, books, n_books, borrowers, n_borrowers)  # create an instance of Library
         lib.add_subscriber_to_library(sub1)
         lib.add_subscriber_to_library(sub2)
         lib.add_subscriber_to_library(sub3)
@@ -130,18 +134,17 @@ def main():
         print(f"\nRANDOM SUBSCRIBER INFORMATION AFTER RETURNING A BOOK...: {id_number}")
         lib.subscriber_info(id_number)
 
-        print(f"\nREMOVING A RANDOM SUBSCRIBER FROM THE LIBRARY:...{id_number}")
-        lib.remove_subscriber_from_library(id_number)
-
         id_number_non_existent = "102030"
         print(f"\nREMOVING A NON EXISTENT SUBSCRIBER FROM THE LIBRARY:...{id_number_non_existent}")
         lib.remove_subscriber_from_library(id_number_non_existent)
 
-    except Exception as exception:
-        print(exception)
-        raise
-    else:
+        # print(f"{exception}"):
         print("\nEND OF INTEGRATION TEST!!!\n")
+        print(f"\nREMOVING A RANDOM SUBSCRIBER FROM THE LIBRARY:...{id_number}")
+        lib.remove_subscriber_from_library(id_number)
+
+    except Exception as exception:
+        print(f"{exception}")
 
     finally:
         stop_time = time.time()
