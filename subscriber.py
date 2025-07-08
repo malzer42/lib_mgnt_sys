@@ -62,14 +62,14 @@ class Subscriber(object):
         return self.age
 
     # Mutators methods
-    def set_id_number(self, id_number):
+    def set_id_number(self, id_number: str):
         """
         Mutator method to set the attribute id_number of the class Subscriber
         :param id_number:str
         """
         self.id_number = id_number
 
-    def set_first_name(self, first_name):
+    def set_first_name(self, first_name: str):
         """
         Mutator method to set the attribute first_name of the class Subscriber
         :param first_name: str
@@ -77,7 +77,7 @@ class Subscriber(object):
         """
         self.first_name = first_name
 
-    def set_last_name(self, last_name):
+    def set_last_name(self, last_name:str):
         """
         Mutator method to set the attribute last_name of the class Attribute
         :param last_name: str
@@ -85,7 +85,7 @@ class Subscriber(object):
         """
         self.last_name = last_name
 
-    def set_age(self, age):
+    def set_age(self, age: int):
         """
         Set the age
         :param age: int

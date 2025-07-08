@@ -2,8 +2,9 @@
 # Author(s): Pierre Abraham Mulamba
 # Date of creation (modification): 20200224 (20200224)
 
-import random
 import time
+import random
+
 
 from book import Book
 from borrow import Borrow
@@ -26,6 +27,7 @@ def main():
         print("INTEGRATION TEST PROGRAM")
 
         print("\nCREATING AND DISPLAYING OF SUBSCRIBERS")
+
         sub1 = Subscriber('1839456', 'John', 'Doe', 23)
         sub2 = Subscriber('1630236', 'Nicolas', 'Gagnon', 8)
         sub3 = Subscriber('1269348', 'Martin', 'Tremblay', 18)
@@ -40,7 +42,7 @@ def main():
         book3 = Book("QA204", "Calcul a plusieurs variables partie 2", 2011, 3, 2, 2)
         book4 = Book("AC409", "Le chateau d'Ortrante", 1764, 16, 1, 1)
         book5 = Book("BD302", "Harry Potter et le prisonier d'Azkaban", 1999, 3, 1, 1)
-        book6 = Book("CE413", "Ibssz Qpuufs et le prisionier c'balbcbo", 2000, 4, 2, 2)
+        book6 = Book("CE413", "Ibssz Qpuufs et le prisonier c'balbcbo", 2000, 4, 2, 2)
         print(book1.info())
         print(book2.info())
         print(book3.info())

@@ -47,7 +47,7 @@ class Borrow(object):
         return self.book_return_date
 
     # Mutators methods
-    def set_sub_obj(self, sub_obj):
+    def set_sub_obj(self, sub_obj: Subscriber):
         """
         Setting the attribute sub_obj
         :param sub_obj: Subscriber
@@ -55,7 +55,7 @@ class Borrow(object):
         """
         self.sub_obj = sub_obj
 
-    def set_book_obj(self, book_obj):
+    def set_book_obj(self, book_obj : Book):
         """
         Mutator method to set the attribute book_obj of the class Borrow
         :param book_obj: Book
@@ -63,7 +63,7 @@ class Borrow(object):
         """
         self.book_obj = book_obj
 
-    def set_book_return_date(self, book_return_date):
+    def set_book_return_date(self, book_return_date:int):
         """
         Mutator method to set the attribute the book_return_date
         :param book_return_date: int

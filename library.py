@@ -26,8 +26,11 @@
 #        print(book.info())
 
 from dataclasses import dataclass
+from typing import List
 
+from book import Book
 from borrow import Borrow
+from subscriber import Subscriber
 
 
 @dataclass(init=True, repr=True)
@@ -43,14 +46,14 @@ class Library(object):
     """
     __slots__ = ['subscribers', 'n_subscribers', 'books', 'n_books', 'borrowers', 'n_borrowers']
 
-    subscribers: []
+    subscribers: List[Subscriber]
     n_subscribers: int
-    books: []
+    books: List[Book]
     n_books: int
-    borrowers: []
+    borrowers: List[Borrow]
     n_borrowers: int
 
-    def add_subscriber_to_library(self, subscriber_obj):
+    def add_subscriber_to_library(self, subscriber_obj: Subscriber):
         """
         Adding a Subscriber object to the library
         subscriber_obj: Subscriber instance.
@@ -70,7 +73,7 @@ class Library(object):
         finally:
             print("Done")
 
-    def remove_subscriber_from_library(self, id_number):
+    def remove_subscriber_from_library(self, id_number:str):
         """
         Remove a Subscriber based on his id_number
         id_number: str
@@ -90,7 +93,7 @@ class Library(object):
         finally:
             print("Done")
 
-    def add_book_to_library(self, book_obj):
+    def add_book_to_library(self, book_obj:Book):
         """
         Adding a Book instance to the library
         book_obj: Book instance.
@@ -110,7 +113,7 @@ class Library(object):
         finally:
             print("Done")
 
-    def remove_book_from_library(self, quote_book):
+    def remove_book_from_library(self, quote_book:str):
         """
         Remove a book from the library based on the quote of the book
         quote_book: str

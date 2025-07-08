@@ -78,7 +78,7 @@ class Book(object):
         return self.n_available
 
     # Mutators methods
-    def set_quote(self, quote):
+    def set_quote(self, quote:str):
         """
         Mutator method to set the attribute quote of the class Book
         :param quote: str
@@ -86,7 +86,7 @@ class Book(object):
         """
         self.quote = quote
 
-    def set_title(self, title):
+    def set_title(self, title:str):
         """
         Mutator method to set the attribute title of the class Book
         :param title: str
@@ -94,7 +94,7 @@ class Book(object):
         """
         self.title = title
 
-    def set_year(self, year):
+    def set_year(self, year:int):
         """
         Mutator method to set the attribute year of the class Book
         :param year: int
@@ -102,7 +102,7 @@ class Book(object):
         """
         self.year = year
 
-    def set_minimal_age(self, minimal_age):
+    def set_minimal_age(self, minimal_age:int):
         """
         Mutator method to set the attribute minimal_age of the class Book
         :param minimal_age: int
@@ -110,7 +110,7 @@ class Book(object):
         """
         self.minimal_age = minimal_age
 
-    def set_n_possess(self, n_possess):
+    def set_n_possess(self, n_possess:int):
         """
         Mutator method to set the attribute n_possess of the class Book
         :param n_possess:
@@ -118,7 +118,7 @@ class Book(object):
         """
         self.n_possess = n_possess
 
-    def set_n_available(self, n_available):
+    def set_n_available(self, n_available:int):
         """
         Mutator method to set the attribute n_available of the class Book
         :param n_available: int
