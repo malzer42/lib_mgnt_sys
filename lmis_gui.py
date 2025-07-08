@@ -14,6 +14,7 @@ subscribers_list = [
 ]
 
 books_list = [
+    Book("HB514", "Bjh D++", 2010, 9, 3, 4),
     Book("GA403", "Big C++", 2009, 8, 3, 3),
     Book("QA203", "Calcul Partie 1", 2011, 3, 2, 2),
     Book("QA204", "Calcul Partie 2", 2011, 3, 2, 2),
