@@ -24,9 +24,9 @@ def test_ge_first_name(sub, test_input):
 # return the Subscriber last name
 @pytest.mark.parametrize("test_input",
                          [
-                             ('John'),
-                             ('Mulamba'),
-                             ('Cena')
+                             'John',
+                             'Mulamba',
+                             'Cena'
                          ]
                          )
 def test_get_last_name(sub, test_input):
