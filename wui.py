@@ -1,7 +1,8 @@
 from reactpy import component, html, run, use_state
-from subscriber import Subscriber
+
 from book import Book
 from library import Library
+from subscriber import Subscriber
 
 # Initialize the library with some data
 lib = Library([], 0, [], 0, [], 0)
@@ -10,7 +11,7 @@ lib = Library([], 0, [], 0, [], 0)
 subscribers_list = [
     Subscriber("1839456", "John", "Doe", 23),
     Subscriber("1630236", "Nicolas", "Gagnon", 8),
-    Subscriber("1269348", "Martin", "Tremblay", 18)
+    Subscriber("1269348", "Martin", "Tremblay", 18),
 ]
 
 books_list = [
@@ -20,7 +21,7 @@ books_list = [
     Book("QA204", "Calcul Partie 2", 2011, 3, 2, 2),
     Book("AC409", "Le chateau d'Ortrante", 1764, 16, 1, 1),
     Book("BD302", "Harry Potter et le prisonier d'Azkaban", 1999, 3, 1, 1),
-    Book("CE413", "Ibssz Qpuufs et le prisonier c'balbcbo", 2000, 4, 2, 2)
+    Book("CE413", "Ibssz Qpuufs et le prisonier c'balbcbo", 2000, 4, 2, 2),
 ]
 
 for subscriber in subscribers_list:
@@ -28,6 +29,7 @@ for subscriber in subscribers_list:
 
 for book in books_list:
     lib.add_book_to_library(book)
+
 
 @component
 def LMISDashboard():
@@ -76,7 +78,14 @@ def LMISDashboard():
 
     def handle_add_book(event):
         try:
-            book = Book(book_quote, book_title, int(book_year), int(book_stock), int(book_avail), int(book_borrowed))
+            book = Book(
+                book_quote,
+                book_title,
+                int(book_year),
+                int(book_stock),
+                int(book_avail),
+                int(book_borrowed),
+            )
             lib.add_book_to_library(book)
             set_message(f"Added book '{book_title}'.")
         except Exception as e:
@@ -85,95 +94,168 @@ def LMISDashboard():
     def handle_search(event):
         results = []
         for book in lib.books:
-            if search_input.lower() in book.get_title.lower() or search_input.lower() in book.get_quote.lower():
+            if (
+                search_input.lower() in book.get_title.lower()
+                or search_input.lower() in book.get_quote.lower()
+            ):
                 results.append(book.info())
         set_search_result(results or ["No matching books found."])
 
     return html.div(
-        {"style": {
-            "fontFamily": "Arial",
-            "padding": "20px",
-            "maxWidth": "2000px",
-            "margin": "auto",
-            "backgroundColor": "#f9f9f9",
-            "border": "1px solid #ddd",
-            "borderRadius": "8px"
-        }},
-
+        {
+            "style": {
+                "fontFamily": "Arial",
+                "padding": "20px",
+                "maxWidth": "2000px",
+                "margin": "auto",
+                "backgroundColor": "#f9f9f9",
+                "border": "1px solid #ddd",
+                "borderRadius": "8px",
+            }
+        },
         html.h1("📚 Library Inventory Management System"),
         html.h2("👤 Display the List of Subscribers"),
         html.ul(*subscribers_list),
         html.h2("📖  Diplay the List of Books"),
         html.ul(*books_list),
-
         html.div(
             {"style": {"marginBottom": "20px"}},
             html.h2("🔄 Borrow a Book"),
-            html.input({"placeholder": "Subscriber ID", "value": borrow_id, "on_change": lambda e: set_borrow_id(e['target']['value'])}),
-            html.input({"placeholder": "Book Quote", "value": borrow_quote, "on_change": lambda e: set_borrow_quote(e['target']['value'])}),
-            
+            html.input(
+                {
+                    "placeholder": "Subscriber ID",
+                    "value": borrow_id,
+                    "on_change": lambda e: set_borrow_id(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Book Quote",
+                    "value": borrow_quote,
+                    "on_change": lambda e: set_borrow_quote(e["target"]["value"]),
+                }
+            ),
         ),
-
         html.button({"on_click": handle_borrow}, "Borrow"),
-
         html.div(
             {"style": {"marginBottom": "20px"}},
             html.h2("↩️ Return a Book"),
-            html.input({"placeholder": "Subscriber ID", "value": return_id, "on_change": lambda e: set_return_id(e['target']['value'])}),
-            html.input({"placeholder": "Book Quote", "value": return_quote, "on_change": lambda e: set_return_quote(e['target']['value'])}),
-            
+            html.input(
+                {
+                    "placeholder": "Subscriber ID",
+                    "value": return_id,
+                    "on_change": lambda e: set_return_id(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Book Quote",
+                    "value": return_quote,
+                    "on_change": lambda e: set_return_quote(e["target"]["value"]),
+                }
+            ),
         ),
-
         html.button({"on_click": handle_return}, "Return"),
-
         html.div(
             {"style": {"marginBottom": "20px"}},
             html.h2("➕ Add Subscriber"),
-            html.input({"placeholder": "ID", "value": sub_id, "on_change": lambda e: set_sub_id(e['target']['value'])}),
-            html.input({"placeholder": "First Name", "value": sub_first, "on_change": lambda e: set_sub_first(e['target']['value'])}),
-            html.input({"placeholder": "Last Name", "value": sub_last, "on_change": lambda e: set_sub_last(e['target']['value'])}),
-            html.input({"placeholder": "Age", "value": sub_age, "on_change": lambda e: set_sub_age(e['target']['value'])}),
-            
+            html.input(
+                {
+                    "placeholder": "ID",
+                    "value": sub_id,
+                    "on_change": lambda e: set_sub_id(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "First Name",
+                    "value": sub_first,
+                    "on_change": lambda e: set_sub_first(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Last Name",
+                    "value": sub_last,
+                    "on_change": lambda e: set_sub_last(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Age",
+                    "value": sub_age,
+                    "on_change": lambda e: set_sub_age(e["target"]["value"]),
+                }
+            ),
         ),
-
         html.button({"on_click": handle_add_subscriber}, "Add Subscriber"),
-
         html.div(
             {"style": {"marginBottom": "20px"}},
             html.h2("📘 Add Book"),
-            html.input({"placeholder": "Quote", "value": book_quote, "on_change": lambda e: set_book_quote(e['target']['value'])}),
-            html.input({"placeholder": "Title", "value": book_title, "on_change": lambda e: set_book_title(e['target']['value'])}),
-            html.input({"placeholder": "Year", "value": book_year, "on_change": lambda e: set_book_year(e['target']['value'])}),
-            html.input({"placeholder": "Stock", "value": book_stock, "on_change": lambda e: set_book_stock(e['target']['value'])}),
-            html.input({"placeholder": "Available", "value": book_avail, "on_change": lambda e: set_book_avail(e['target']['value'])}),
-            html.input({"placeholder": "Borrowed", "value": book_borrowed, "on_change": lambda e: set_book_borrowed(e['target']['value'])}),
-            
+            html.input(
+                {
+                    "placeholder": "Quote",
+                    "value": book_quote,
+                    "on_change": lambda e: set_book_quote(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Title",
+                    "value": book_title,
+                    "on_change": lambda e: set_book_title(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Year",
+                    "value": book_year,
+                    "on_change": lambda e: set_book_year(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Stock",
+                    "value": book_stock,
+                    "on_change": lambda e: set_book_stock(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Available",
+                    "value": book_avail,
+                    "on_change": lambda e: set_book_avail(e["target"]["value"]),
+                }
+            ),
+            html.input(
+                {
+                    "placeholder": "Borrowed",
+                    "value": book_borrowed,
+                    "on_change": lambda e: set_book_borrowed(e["target"]["value"]),
+                }
+            ),
         ),
-
         html.button({"on_click": handle_add_book}, "Add Book"),
-
         html.div(
             {"style": {"marginBottom": "20px"}},
             html.h2("🔍 Search Books"),
-            html.input({"placeholder": "Enter title or quote", "value": search_input, "on_change": lambda e: set_search_input(e['target']['value'])}),
+            html.input(
+                {
+                    "placeholder": "Enter title or quote",
+                    "value": search_input,
+                    "on_change": lambda e: set_search_input(e["target"]["value"]),
+                }
+            ),
             html.button({"on_click": handle_search}, "Search"),
-            html.ul(*[html.li(result) for result in search_result])
+            html.ul(*[html.li(result) for result in search_result]),
         ),
-
-        html.div(
-            html.h3("📋 Message Log"),
-            html.div(message)
-        ),
-
+        html.div(html.h3("📋 Message Log"), html.div(message)),
         html.div(
             html.h2("👤 Subscribers"),
-            html.ul(*[html.li(s.info()) for s in lib.subscribers])
+            html.ul(*[html.li(s.info()) for s in lib.subscribers]),
         ),
-
-        html.div(
-            html.h2("📖 Books"),
-            html.ul(*[html.li(b.info()) for b in lib.books])
-        )
+        html.div(html.h2("📖 Books"), html.ul(*[html.li(b.info()) for b in lib.books])),
     )
+
 
 run(LMISDashboard)

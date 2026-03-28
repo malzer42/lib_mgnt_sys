@@ -1,4 +1,5 @@
 """Definition of the Library class."""
+
 # Author(s): Pierre Abraham Mulamba
 # Date of creation (modification): 20200224 (20200224)
 # Usage: import book
@@ -44,7 +45,15 @@ class Library(object):
     borrowers: List[Borrow]
     n_borrowers: int
     """
-    __slots__ = ['subscribers', 'n_subscribers', 'books', 'n_books', 'borrowers', 'n_borrowers']
+
+    __slots__ = [
+        "subscribers",
+        "n_subscribers",
+        "books",
+        "n_books",
+        "borrowers",
+        "n_borrowers",
+    ]
 
     subscribers: List[Subscriber]
     n_subscribers: int
@@ -64,7 +73,9 @@ class Library(object):
                 self.n_subscribers = len(self.subscribers)
                 print(f"{subscriber_obj.get_id_number} added successfully")
             else:
-                print(f"WARNING {subscriber_obj.get_id_number} already exists in the Library")
+                print(
+                    f"WARNING {subscriber_obj.get_id_number} already exists in the Library"
+                )
         except Exception as exception_add_sub:
             print(exception_add_sub)
             raise
@@ -73,13 +84,17 @@ class Library(object):
         finally:
             print("Done")
 
-    def remove_subscriber_from_library(self, id_number:str):
+    def remove_subscriber_from_library(self, id_number: str):
         """
         Remove a Subscriber based on his id_number
         id_number: str
         """
         try:
-            [self.subscribers.remove(sub_obj) for sub_obj in self.subscribers if sub_obj.get_id_number == id_number][0]
+            [
+                self.subscribers.remove(sub_obj)
+                for sub_obj in self.subscribers
+                if sub_obj.get_id_number == id_number
+            ][0]
             print(f"{id_number} removed successfully")
             self.n_subscribers = len(self.subscribers)
         except IndexError as index_error:
@@ -93,7 +108,7 @@ class Library(object):
         finally:
             print("Done")
 
-    def add_book_to_library(self, book_obj:Book):
+    def add_book_to_library(self, book_obj: Book):
         """
         Adding a Book instance to the library
         book_obj: Book instance.
@@ -113,13 +128,17 @@ class Library(object):
         finally:
             print("Done")
 
-    def remove_book_from_library(self, quote_book:str):
+    def remove_book_from_library(self, quote_book: str):
         """
         Remove a book from the library based on the quote of the book
         quote_book: str
         """
         try:
-            [self.books.remove(book_obj) for book_obj in self.books if book_obj.get_quote == quote_book][0]
+            [
+                self.books.remove(book_obj)
+                for book_obj in self.books
+                if book_obj.get_quote == quote_book
+            ][0]
             self.n_books = len(self.books)
             print(f"{quote_book} removed successfully")
         except Exception as exception_rem_book:
@@ -136,7 +155,11 @@ class Library(object):
         title: str
         """
         try:
-            [print(book_obj.info()) for book_obj in self.books if title in book_obj.get_title]
+            [
+                print(book_obj.info())
+                for book_obj in self.books
+                if title in book_obj.get_title
+            ]
         except Exception as exception_search_title:
             print(f"{title} Not found - {exception_search_title}")
             raise
@@ -163,7 +186,9 @@ class Library(object):
         finally:
             pass
 
-    def borrow_book_by_subscriber(self, sub_id_number, book_quote, book_return_date) -> bool:
+    def borrow_book_by_subscriber(
+        self, sub_id_number, book_quote, book_return_date
+    ) -> bool:
         """
         The method check if it is possible that the book can be borrowed by the subscriber
         if it is possible, then a new borrow is added to the list of borrowers.
@@ -183,36 +208,57 @@ class Library(object):
         try:
             # Search a book with the given book_quote in the list of books and assign it to tmp_book
             # Check if the book is available in the list of books.
-            book_obj = [book_elt for book_elt in self.books if book_elt.get_quote == book_quote][0]
+            book_obj = [
+                book_elt for book_elt in self.books if book_elt.get_quote == book_quote
+            ][0]
 
             if book_obj.get_n_available > 0:
                 is_book_available = True
             else:
-                print(f"{book_obj.get_quote} is not available {book_obj.get_n_available}")
+                print(
+                    f"{book_obj.get_quote} is not available {book_obj.get_n_available}"
+                )
                 return success_or_fail
 
-            sub_obj = [subscriber_elt for subscriber_elt in self.subscribers if subscriber_elt.get_id_number == sub_id_number][0]
+            sub_obj = [
+                subscriber_elt
+                for subscriber_elt in self.subscribers
+                if subscriber_elt.get_id_number == sub_id_number
+            ][0]
 
             # Check if the given subscriber has borrowed the book in the list of borrowers
             # Count the number of time the subscriber occurs in the borrowers list
             has_subscriber_borrowed_the_book: bool = False
             borrow_obj = Borrow(sub_obj, book_obj, book_return_date)
             if borrow_obj in self.borrowers:
-                print(f"{borrow_obj.get_book_obj.get_quote} - {borrow_obj.get_sub_obj.get_id_number} exists in the borrowers list")
+                print(
+                    f"{borrow_obj.get_book_obj.get_quote} - {borrow_obj.get_sub_obj.get_id_number} exists in the borrowers list"
+                )
                 return success_or_fail
 
             for borrow_elt in self.borrowers:
                 if borrow_elt.get_sub_obj.get_id_number == sub_id_number:
-                    number_of_books_borrowed_by_subscriber = number_of_books_borrowed_by_subscriber + 1
-                    if number_of_books_borrowed_by_subscriber >= maximal_number_to_borrow:
+                    number_of_books_borrowed_by_subscriber = (
+                        number_of_books_borrowed_by_subscriber + 1
+                    )
+                    if (
+                        number_of_books_borrowed_by_subscriber
+                        >= maximal_number_to_borrow
+                    ):
                         success_or_fail = False
-                        print(f"Number of books borrowed by subscriber {number_of_books_borrowed_by_subscriber}")
-                        print(f"{sub_obj.get_id_number} has reached the limit to borrow a book")
+                        print(
+                            f"Number of books borrowed by subscriber {number_of_books_borrowed_by_subscriber}"
+                        )
+                        print(
+                            f"{sub_obj.get_id_number} has reached the limit to borrow a book"
+                        )
                         # print("Excess Failure to borrow the book {} by the subscriber {}".format(book_obj, sub_obj))
                         return success_or_fail
 
                     else:
-                        print(f"!!!! {number_of_books_borrowed_by_subscriber}. {borrow_elt.get_book_obj.get_quote} - {borrow_elt.get_sub_obj.get_id_number} !!!!")
+                        print(
+                            f"!!!! {number_of_books_borrowed_by_subscriber}. {borrow_elt.get_book_obj.get_quote} - {borrow_elt.get_sub_obj.get_id_number} !!!!"
+                        )
 
             # Check if the subscriber has the required age to read the book,
             # the subscriber did not exceed the maximal number allowed to borrow.
@@ -220,7 +266,9 @@ class Library(object):
             if sub_obj.get_age >= book_obj.get_minimal_age:
                 has_required_age = True
             else:
-                print(f"{sub_obj.get_id_number} does not have the required age to read the book {book_obj.get_quote}")
+                print(
+                    f"{sub_obj.get_id_number} does not have the required age to read the book {book_obj.get_quote}"
+                )
                 return success_or_fail
 
             # number_of_books_borrowed_by_subscriber = self.borrowers.count(borrow_obj)
@@ -229,7 +277,12 @@ class Library(object):
                 print(f"{sub_obj.get_id_number} has exceed the limit to borrow a book")
                 return success_or_fail
 
-            if has_required_age and is_book_available and number_of_books_borrowed_by_subscriber < maximal_number_to_borrow and not has_subscriber_borrowed_the_book:
+            if (
+                has_required_age
+                and is_book_available
+                and number_of_books_borrowed_by_subscriber < maximal_number_to_borrow
+                and not has_subscriber_borrowed_the_book
+            ):
                 if borrow_obj not in self.borrowers:
                     self.borrowers.append(borrow_obj)
                     book_obj.set_n_available(book_obj.get_n_available - 1)
@@ -238,12 +291,18 @@ class Library(object):
                     success_or_fail = True
                     return success_or_fail
                 else:
-                    print(f"Number of books borrowed by subscriber {number_of_books_borrowed_by_subscriber}")
-                    print(f"Failure to borrow the book {book_obj.get_quote} by the subscriber {sub_obj.get_id_number}")
+                    print(
+                        f"Number of books borrowed by subscriber {number_of_books_borrowed_by_subscriber}"
+                    )
+                    print(
+                        f"Failure to borrow the book {book_obj.get_quote} by the subscriber {sub_obj.get_id_number}"
+                    )
                     return success_or_fail
 
         except Exception as exception__borrow_book:
-            print(f"{book_obj.get_quote} is not in the library -{exception__borrow_book}")
+            print(
+                f"{book_obj.get_quote} is not in the library -{exception__borrow_book}"
+            )
             raise
         else:
             print(f"Total {len(self.borrowers)} borrow(s) from the Library")
@@ -263,18 +322,33 @@ class Library(object):
         is_book_returned_by_subscriber: bool = False
 
         try:
-            sub_obj = [sub_elt for sub_elt in self.subscribers if sub_elt.get_id_number == sub_id_number][0]
-            book_obj = [book_elt for book_elt in self.books if book_elt.get_quote == book_quote][0]
-            borrow_obj = [borrow_elt for borrow_elt in self.borrowers if borrow_elt.get_sub_obj == sub_obj and borrow_elt.get_book_obj == book_obj][0]
+            sub_obj = [
+                sub_elt
+                for sub_elt in self.subscribers
+                if sub_elt.get_id_number == sub_id_number
+            ][0]
+            book_obj = [
+                book_elt for book_elt in self.books if book_elt.get_quote == book_quote
+            ][0]
+            borrow_obj = [
+                borrow_elt
+                for borrow_elt in self.borrowers
+                if borrow_elt.get_sub_obj == sub_obj
+                and borrow_elt.get_book_obj == book_obj
+            ][0]
             if borrow_obj in self.borrowers:
                 self.borrowers.remove(borrow_obj)
                 is_book_returned_by_subscriber = True
                 book_obj.set_n_available(book_obj.get_n_available + 1)
-                print(f"Success return of {book_obj.get_quote} by {sub_obj.get_id_number}")
+                print(
+                    f"Success return of {book_obj.get_quote} by {sub_obj.get_id_number}"
+                )
                 return is_book_returned_by_subscriber
 
         except Exception as exception_return_book:
-            print(f"Failed return of {book_quote} by {sub_id_number} - {exception_return_book}")
+            print(
+                f"Failed return of {book_quote} by {sub_id_number} - {exception_return_book}"
+            )
             raise
         else:
             print(f"Total {len(self.borrowers)} borrow(s) in the borrowers list")
@@ -289,9 +363,17 @@ class Library(object):
         :return:
         """
         try:
-            sub_obj = [sub_elt for sub_elt in self.subscribers if sub_elt.get_id_number == sub_id_number][0]
+            sub_obj = [
+                sub_elt
+                for sub_elt in self.subscribers
+                if sub_elt.get_id_number == sub_id_number
+            ][0]
             print(f"{sub_obj.info()}")
-            [print(borrow_obj.info()) for borrow_obj in self.borrowers if borrow_obj.get_sub_obj.get_id_number == sub_id_number]
+            [
+                print(borrow_obj.info())
+                for borrow_obj in self.borrowers
+                if borrow_obj.get_sub_obj.get_id_number == sub_id_number
+            ]
         except Exception as exception_sub_info:
             print(f"{sub_id_number} Not found in the Library - {exception_sub_info}")
             raise

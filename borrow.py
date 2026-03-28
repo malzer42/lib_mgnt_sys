@@ -1,12 +1,14 @@
 """Definition of the Borrow class."""
+
 # Author(s): Pierre Abraham Mulamba
 # Date of creation (modification): 20200224 (20200224)
 # Usage: import the borrow
 #        create an object borrow = Borrow("102030", "Pierre", "Abraham", 20)
 
 from dataclasses import dataclass
-from subscriber import Subscriber
+
 from book import Book
+from subscriber import Subscriber
 
 
 @dataclass(init=True, repr=True)
@@ -17,7 +19,8 @@ class Borrow(object):
     book_obj
     date_obj.
     """
-    __slots__ = ['sub_obj', 'book_obj', 'book_return_date']
+
+    __slots__ = ["sub_obj", "book_obj", "book_return_date"]
     sub_obj: Subscriber
     book_obj: Book
     book_return_date: int
@@ -55,7 +58,7 @@ class Borrow(object):
         """
         self.sub_obj = sub_obj
 
-    def set_book_obj(self, book_obj : Book):
+    def set_book_obj(self, book_obj: Book):
         """
         Mutator method to set the attribute book_obj of the class Borrow
         :param book_obj: Book
@@ -63,7 +66,7 @@ class Borrow(object):
         """
         self.book_obj = book_obj
 
-    def set_book_return_date(self, book_return_date:int):
+    def set_book_return_date(self, book_return_date: int):
         """
         Mutator method to set the attribute the book_return_date
         :param book_return_date: int

@@ -1,10 +1,10 @@
 """Driver for the LMIS."""
+
 # Author(s): Pierre Abraham Mulamba
 # Date of creation (modification): 20200224 (20200224)
 
-import time
 import random
-
+import time
 
 from book import Book
 from borrow import Borrow
@@ -28,9 +28,9 @@ def main():
 
         print("\nCREATING AND DISPLAYING OF SUBSCRIBERS")
 
-        sub1 = Subscriber('1839456', 'John', 'Doe', 23)
-        sub2 = Subscriber('1630236', 'Nicolas', 'Gagnon', 8)
-        sub3 = Subscriber('1269348', 'Martin', 'Tremblay', 18)
+        sub1 = Subscriber("1839456", "John", "Doe", 23)
+        sub2 = Subscriber("1630236", "Nicolas", "Gagnon", 8)
+        sub3 = Subscriber("1269348", "Martin", "Tremblay", 18)
         print(sub1.info())
         print(sub2.info())
         print(sub3.info())
@@ -70,7 +70,9 @@ def main():
         n_books: int = 0
         n_borrowers: int = 0
 
-        lib = Library(subscribers, n_subscribers, books, n_books, borrowers, n_borrowers)  # create an instance of Library
+        lib = Library(
+            subscribers, n_subscribers, books, n_books, borrowers, n_borrowers
+        )  # create an instance of Library
         lib.add_subscriber_to_library(sub1)
         lib.add_subscriber_to_library(sub2)
         lib.add_subscriber_to_library(sub3)
@@ -109,8 +111,8 @@ def main():
         print("\nTESTS OF BORROWING")
         lib.borrow_book_by_subscriber("1630236", "AC409", 2021)
         lib.borrow_book_by_subscriber("1630236", "BD302", 2021)
-        lib.borrow_book_by_subscriber('1839456', "GA403", 2021)
-        lib.borrow_book_by_subscriber('1839456', "GA403", 2021)
+        lib.borrow_book_by_subscriber("1839456", "GA403", 2021)
+        lib.borrow_book_by_subscriber("1839456", "GA403", 2021)
         lib.borrow_book_by_subscriber("1839456", "BD302", 2022)
         lib.borrow_book_by_subscriber("1630236", "QA204", 2024)
         lib.borrow_book_by_subscriber("1630236", "QA203", 2044)
@@ -119,8 +121,12 @@ def main():
         print("\nSUBSCRIBER INFORMATION BEFORE RETURNING A BOOK")
         lib.subscriber_info("1630236")
 
-        id_number = random.choice([sub_obj.get_id_number for sub_obj in lib.subscribers])
-        print(f"\nRANDOM SUBSCRIBER INFORMATION BEFORE RETURNING A BOOK...: {id_number}")
+        id_number = random.choice(
+            [sub_obj.get_id_number for sub_obj in lib.subscribers]
+        )
+        print(
+            f"\nRANDOM SUBSCRIBER INFORMATION BEFORE RETURNING A BOOK...: {id_number}"
+        )
         lib.subscriber_info(id_number)
 
         print("\nTEST ON BOOKS RETURN")
@@ -137,7 +143,9 @@ def main():
         lib.subscriber_info(id_number)
 
         id_number_non_existent = "102030"
-        print(f"\nREMOVING A NON EXISTENT SUBSCRIBER FROM THE LIBRARY:...{id_number_non_existent}")
+        print(
+            f"\nREMOVING A NON EXISTENT SUBSCRIBER FROM THE LIBRARY:...{id_number_non_existent}"
+        )
         lib.remove_subscriber_from_library(id_number_non_existent)
 
         # print(f"{exception}"):
@@ -153,9 +161,11 @@ def main():
         delta_time = stop_time - start_time
         print(f"{stop_time} - {start_time} = {delta_time}")
         print("If you fail to plan, you are planning to fail! Benjamin Franklin")
-        print("""To be a dancing master is a special thing.\nBut to be a faceless man, that is something else entirely""")
+        print(
+            """To be a dancing master is a special thing.\nBut to be a faceless man, that is something else entirely"""
+        )
         print("PROGRAM ENDED SUCCESSFULLY")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,11 +1,11 @@
 """Definition of the Subscriber class."""
+
 # Author(s): Pierre Abraham Mulamba
 # Date of creation (modification): 20200224 (20200224)
 # Usage: import the subscriber
 #        create an object sub = Subscriber("102030", "Pierre", "Abraham", 20)
 
 from dataclasses import dataclass
-
 
 # from borrow import Borrow
 
@@ -20,7 +20,8 @@ class Subscriber(object):
     age: int
     borrowers: list[Borrow]
     """
-    __slots__ = ['id_number', 'first_name', 'last_name', 'age']
+
+    __slots__ = ["id_number", "first_name", "last_name", "age"]
     id_number: str
     first_name: str
     last_name: str
@@ -77,7 +78,7 @@ class Subscriber(object):
         """
         self.first_name = first_name
 
-    def set_last_name(self, last_name:str):
+    def set_last_name(self, last_name: str):
         """
         Mutator method to set the attribute last_name of the class Attribute
         :param last_name: str
